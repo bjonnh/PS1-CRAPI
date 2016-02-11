@@ -1,29 +1,39 @@
 import tornado.ioloop
 import tornado.web
-
 from Auth import Auth
-from Requests import AuthRequestHandler, AuthorizedHandler, AuthorizeHandler, UnauthorizeHandler
+from Requests import (AuthRequestHandler, AuthorizedHandler,
+                      AuthorizeHandler, UnauthorizeHandler)
+VERSION = "0.00"
 
 auth = Auth()
-machine1 = auth.add_machine('ABC1')
-user1 = auth.add_user('0001', True)
-user2 = auth.add_user('0002')
+machine1 = auth.add_machine('TESTMACHINE')
+user1 = auth.add_user('TESTAUTH', True)
+user2 = auth.add_user('TESTUSER')
+user3 = auth.add_user('TESTUSERTOBEAUTH')
 auth.authorize_user(machine1, user1)
+auth.authorize_user(machine1, user2)
+
+
+class VersionHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("PS1-CRAPI:{}".format(VERSION))
 
 
 def make_app():
     return tornado.web.Application([
-        (r"/auth/request",
+        (r"/version",
+         VersionHandler),
+        (r"/request",
          AuthRequestHandler.handler,
          dict(auth=auth)),
-        (r"/auth/authorize",
+        (r"/authorize",
          AuthorizeHandler.handler,
          dict(auth=auth)),
-        (r"/auth/unauthorize",
+        (r"/unauthorize",
          UnauthorizeHandler.handler,
          dict(auth=auth)),
         # Avoids logging an invalid request if we put logging at one point
-        (r"/auth/authorized",
+        (r"/authorized",
          AuthorizedHandler.handler,
          dict(auth=auth)),
     ])
