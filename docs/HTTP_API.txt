@@ -1,0 +1,39 @@
+V0.00
+
+All requests are made in GET
+| /version     | Returns the version of the server                                                        |
+|              | returns: a string "PS1-CRAPI:" followed by the version number formated as [0-9]+\.[0-9]+ |
+|              | example: PS1-CRAPI:0.00                                                                  |
+| /request     | Check if "user" is authorized on "machine" (and logs if failure)                         |
+|              | take as parameters                                                                       |
+|              | - machine : the machine ID                                                               |
+|              | - user : the user ID                                                                     |
+|              | returns:                                                                                 |
+|              | - TRUE if user is authorized                                                             |
+|              | - FALSE if not                                                                           |
+| /check       | Check if "user" is authorized on "machine" (same as /request but without log)            |
+| /authorize   | Authorize "user" on "machine" by "auth"                                                  |
+|              | take as parameters                                                                       |
+|              | - machine : the machine ID                                                               |
+|              | - user : the user ID                                                                     |
+|              | - auth : the user ID                                                                     |
+|              | returns:                                                                                 |
+|              | - TRUE if user is now authorized                                                         |
+|              | - FALSE if not                                                                           |
+| /unauthorize | Unauthorize "user" on "machine" by "auth"                                                |
+|              | take as parameters                                                                       |
+|              | - machine : the machine ID                                                               |
+|              | - user : the user ID                                                                     |
+|              | - auth : the user ID                                                                     |
+|              | returns:                                                                                 |
+|              | - TRUE if user is now unauthorized                                                       |
+|              | - FALSE if not                                                                           |
+
+
+ERRORS:
+
+| ERR_INVALID_REQUEST        | One or more arguments are missing for this request      |
+| ERR_MACHINE_NOT_REGISTERED | This machine doesn't exist                              |
+| ERR_USER_NOT_REGISTERED    | This user doesn't exist                                 |
+| ERR_AUTH_NOT_AUTH          | The authorizer is not an authorizer on this machine     |
+| ERR_AUTH_IS_USER           | An authorizer cannot remove itself from the authorizers |

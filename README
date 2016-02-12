@@ -1,0 +1,22 @@
+PS1-CRAPI : Pumping Station One - Control Relay API
+
+This is a simple Authorization server created initially for the
+Pumping Station One hackerspace (http://www.pumpingstationone.org).
+
+It is meant to serve as an interface between physical modules
+connected to machinery that requires users to be certified and a
+server that handles user rights (LDAP?).
+
+Documentation about the Auth System Python API can be found in:
+docs/Auth_Module_Python_API.txt
+
+Documentation about the HTTP API can be found in:
+docs/HTTP_API.txt
+
+It has been written and tested using Python > 3.4 feel free to make it
+Python 2.x compatible if you are brave enough.
+
+To run the tests, use "nosetest".
+
+The test_async is the only source for a working example feel free to
+mess with it.

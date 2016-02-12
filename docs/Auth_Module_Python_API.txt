@@ -1,0 +1,60 @@
+The auth module use a simple python API.
+
+class Auth:
+      def machine_registered(self, machine_name):
+      	  """Take machine_name as text
+	  returns:
+	  True if machine is registered
+	  False if not
+	  """
+      	  …
+	  return bool
+
+      def user_registered(self, user_name):
+      	  """Take user_name as text
+	  returns:
+	  True if user is registered
+	  False if not
+	  """
+      	  …
+	  return bool
+
+      def is_authorizer_on_machine(self, machine_name, user_name):
+          """Check if user_name is an authorizer for machine_name
+	  returns:
+	  True or False according to that
+	  """
+          …
+          return bool
+
+    def make_user_autherizer_on_machine(self, machine_name, user_name):
+          """Make this user an authorizer on the machine
+          returns: 
+          True if successful False if not
+          """
+          …
+          return bool
+
+    def is_user_authorized(self, machine_name, user_name):
+          """Check if this user is authorized on the machine
+          returns: 
+          True if successful False if not
+          """
+          …
+          return bool
+
+    def authorize_user(self, machine_name, user_name):
+          """Make this user authorized on the machine
+          returns: 
+          True if successful False if not
+          """
+          …
+          return bool
+
+    def unauthorize_user(self, machine_name, user_name):
+          """Remove user authorization on the machine
+          returns: 
+          True if successful False if not
+          """
+          …
+          return bool
